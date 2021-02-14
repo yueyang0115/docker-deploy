@@ -73,7 +73,7 @@ Finally push this image to AWS repository. The command will be like:
 docker push 075300343026.dkr.ecr.us-east-2.amazonaws.com/dockerproj:latest
 ```
 
-### Pull this image from Amazon ECR
+### Pull from Amazon ECR
 Open another Cloud9 environment.  
 Authenticate first by using the same suthentication code from ECR console. It will look like this:  
 ```
@@ -90,11 +90,6 @@ docker run -it 075300343026.dkr.ecr.us-east-2.amazonaws.com/dockerproj python ap
 
 ### Push this docker image to DockerHub
 
+### Pull frrom DockerHub
 
-
-### Set up continuous deployment
-
-
-### Done! See pipeline under Cloud Build
-Now if you make a change to your code on github, this app will be redeployed automatically. 
-You can see the new build pipeline under Cloud Build.  
+### Done!  
