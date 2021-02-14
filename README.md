@@ -1,7 +1,14 @@
 # docker-deploy
+This project build a Docker container from scratch. It deploys the container to AWS Container Registry and pushes it to dockerhub.  
+
+## Reference
+Source code: [noahgift/container-from-scratch-python](https://github.com/noahgift/container-from-scratch-python).  
+Source code: [noahgift/container-revolution-devops-microservices](https://github.com/noahgift/container-revolution-devops-microservices).  
+Youtube walkthrough: [Setup a Docker python project from scratch in AWS Cloud9](https://www.youtube.com/watch?v=WVifwRIwSmo).  
+
 
 ## How to use
-To deploy docker on AWS and set up continuous deployment, you can follow these steps:
+To deploy Docker on AWS and set up continuous deployment, you can follow these steps:
 
 ### Set up a project
 Launch AWS Cloud9.  
@@ -9,7 +16,7 @@ Create ssh-keys and upload it to Github.
 ```
 ssh-keygen -t rsa
 ```
-Create a new repo on github, git clone it to your AWS local and cd into it.
+Create a new repo on github, git clone it to your AWS local and cd into it.  
 Create all related files, including **Dockerfile, Makefile, requirements.txt, app.py**.  
 (optional) Install hadolint.  
 ```
@@ -43,7 +50,7 @@ Build container accoridng to the setup in Dockerfile, name this container "app".
 ```
 docker build --tag=app .
 ```
-List all docker images and find the newly created one. (To delete an image, run "docker image rm IMAGE_NAME")  
+List all docker images and find the newly created one. (To delete an image, run "docker image rm NAME")  
 ```
 docker image ls
 ```
@@ -57,7 +64,7 @@ python app.py --name yyyy
 exit
 ```
 
-### deploy this container to the AWS Container Registry
+### Deploy this container to AWS Container Registry
 
 
 
