@@ -1,5 +1,6 @@
 # docker-deploy
-This project build a Docker container from scratch. It deploys the container to AWS Container Registry and pushes it to dockerhub.  
+This project build a Docker container from scratch. It pushes the container to Amazon Elastic Container Registry
+(ECR) and DockerHub.  
 
 ## Reference
 Source code: [noahgift/container-from-scratch-python](https://github.com/noahgift/container-from-scratch-python).  
@@ -11,7 +12,7 @@ Youtube walkthrough: [Setup a Docker python project from scratch in AWS Cloud9](
 To deploy Docker on AWS and set up continuous deployment, you can follow these steps:
 
 ### Set up a project
-Launch AWS Cloud9.  
+Launch AWS Cloud9, choose or create an environment.  
 Create ssh-keys and upload it to Github.  
 ```
 ssh-keygen -t rsa
@@ -64,8 +65,28 @@ python app.py --name yyyy
 exit
 ```
 
-### Deploy this container to AWS Container Registry
+### Push this docker image to Amazon ECR
+Open Amazon ECR console.  
+Create a repository, call it "dockerproj" and enable "Scan on push".  
+Click on the newly created repo, and click on **view push commands**. It will show commands like below to help you authenticate and push an image to your repository.  
+First authenticate. The command will be like:  
+```
+aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 075300343026.dkr.ecr.us-east-2.amazonaws.com
+```
+Then build docker image. The command will be like:  
+```
+docker build -t dockerproj .
+```
+Then tag the image. The command will be like:  
+```
+docker tag dockerproj:latest 075300343026.dkr.ecr.us-east-2.amazonaws.com/dockerproj:latest
+```
+Finally push this image to AWS repository. The command will be like:  
+```
+docker push 075300343026.dkr.ecr.us-east-2.amazonaws.com/dockerproj:latest
+```
 
+### Push this docker image to DockerHub
 
 
 
