@@ -55,7 +55,7 @@ List all docker images and find the newly created one. (To delete an image, run 
 ```
 docker image ls
 ```
-Run docker and shell into it. The shell will be like root@3f63ef850cdd:/app#  
+**Run docker and shell into it**. The shell will be like root@3f63ef850cdd:/app#  
 ```
 docker run -it app bash 
 ```
@@ -84,6 +84,21 @@ docker tag dockerproj:latest 075300343026.dkr.ecr.us-east-2.amazonaws.com/docker
 Finally push this image to AWS repository. The command will be like:  
 ```
 docker push 075300343026.dkr.ecr.us-east-2.amazonaws.com/dockerproj:latest
+```
+
+### Pull this image from Amazon ECR
+Open another Cloud9 environment.  
+Authenticate first by using the same suthentication code from "view push commands" column in ECR console. It will look like this:  
+```
+aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 075300343026.dkr.ecr.us-east-2.amazonaws.com
+```
+Then pull down this image from ECR.  
+```
+docker pull 075300343026.dkr.ecr.us-east-2.amazonaws.com/dockerproj
+```
+**Run this docker in the new environment**.  
+```
+docker run -it 075300343026.dkr.ecr.us-east-2.amazonaws.com/dockerproj python app.py --name yy
 ```
 
 ### Push this docker image to DockerHub
