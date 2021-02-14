@@ -1,6 +1,6 @@
 # docker-deploy
-This project build a Docker container from scratch. It pushes the container to Amazon Elastic Container Registry
-(ECR) and DockerHub.  
+This project build a Docker container from scratch.  
+It pushes the container to Amazon Elastic Container Registry(ECR) and DockerHub.  
 
 ## Reference
 Source code: [noahgift/container-from-scratch-python](https://github.com/noahgift/container-from-scratch-python).  
@@ -9,7 +9,7 @@ Youtube walkthrough: [Setup a Docker python project from scratch in AWS Cloud9](
 
 
 ## How to use
-To deploy Docker on AWS and set up continuous deployment, you can follow these steps:
+To build a docker container and push it, you can follow these steps:
 
 ### Set up a project
 Launch AWS Cloud9, choose or create an environment.  
@@ -68,7 +68,7 @@ exit
 ### Push this docker image to Amazon ECR
 Open Amazon ECR console.  
 Create a repository, call it "dockerproj" and enable "Scan on push".  
-Click on the newly created repo, and click on **view push commands**. It will show commands like below to help you authenticate and push an image to your repository.  
+Click on the newly created repo, and click on **"view push commands"**. It will show commands like below:  
 First authenticate. The command will be like:  
 ```
 aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 075300343026.dkr.ecr.us-east-2.amazonaws.com
@@ -88,7 +88,7 @@ docker push 075300343026.dkr.ecr.us-east-2.amazonaws.com/dockerproj:latest
 
 ### Pull this image from Amazon ECR
 Open another Cloud9 environment.  
-Authenticate first by using the same suthentication code from "view push commands" column in ECR console. It will look like this:  
+Authenticate first by using the same suthentication code from ECR console. It will look like this:  
 ```
 aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 075300343026.dkr.ecr.us-east-2.amazonaws.com
 ```
@@ -96,7 +96,7 @@ Then pull down this image from ECR.
 ```
 docker pull 075300343026.dkr.ecr.us-east-2.amazonaws.com/dockerproj
 ```
-**Run this docker in the new environment**.  
+**Run docker in this new environment**.  
 ```
 docker run -it 075300343026.dkr.ecr.us-east-2.amazonaws.com/dockerproj python app.py --name yy
 ```
