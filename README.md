@@ -13,10 +13,7 @@ To build a docker container and push it, you can follow these steps:
 
 ### Set up a project
 Launch AWS Cloud9, choose or create an environment.  
-Create ssh-keys and upload it to Github.  
-```
-ssh-keygen -t rsa
-```
+Create ssh-keys and upload it to Github.  ``ssh-keygen -t rsa``  
 Create a new repo on github, git clone it to your AWS local and cd into it.  
 Create all related files, including **Dockerfile, Makefile, requirements.txt, app.py**.  
 (optional) Install hadolint.  
@@ -24,10 +21,7 @@ Create all related files, including **Dockerfile, Makefile, requirements.txt, ap
 sudo wget -O /bin/hadolint https://github.com/hadolint/hadolint/releases/download/v1.19.0/hadolint-Linux-x86_64
 sudo chmod +x /bin/hadolint
 ```
-(optional) Test hadolint after you call "make install" and make the app run locally.  
-```
-make lint
-```
+(optional) Test hadolint after you call "make install" and make the app run locally.  ```make lint```  
 
 ### Run this app locally
 Create a virtual environment and activate it. (To deactivate it, run "deactivate") 
@@ -35,15 +29,8 @@ Create a virtual environment and activate it. (To deactivate it, run "deactivate
 python3 -m venv ~/.dockerproj
 source ~/.dockerproj/bin/activate
 ```
-Install the required packages.
-```
-make install
-```
-Run this app.  
-```
-chmod +x app.py
-python app.py --name yy258
-```
+Install the required packages. ```make install```  
+Run this app. ```python app.py --name yy258```  
 
 ### Build a container
 We will pull down an official base container, package up our own software and runtime on top of it.  
