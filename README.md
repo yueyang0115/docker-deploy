@@ -38,11 +38,14 @@ Build container accoridng to the setup in Dockerfile, name this container "app".
 ```
 docker build --tag=app .
 ```
-List all docker images and find the newly created one. (To delete an image, run "docker image rm NAME")  
+List all docker images and find the newly created one. 
 ```
 docker image ls
 ```
-**Run docker and shell into it**. The shell will be like root@3f63ef850cdd:/app#  
+To delete a docker image, use ```docker image rm IMAGE_NAME```  
+If the container is running, use ```docker rmi -f IMAGE_NAME``` to force the deletion.  
+
+**Run docker and shell into it**. The shell will be like ```root@3f63ef850cdd:/app#```  
 ```
 docker run -it app bash 
 ```
@@ -89,6 +92,14 @@ docker run -it 075300343026.dkr.ecr.us-east-2.amazonaws.com/dockerproj python ap
 ```
 
 ### Push this docker image to DockerHub
+Create a new repository on DockerHub.  
+Login to DockerHub in your AWS local.  
+```
+docker login --username=yourhubusername
+```
+Check your image using ```docker image ls```.  
+Tag your image.  
+
 
 ### Pull frrom DockerHub
 
