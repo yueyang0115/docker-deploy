@@ -1,6 +1,6 @@
 # docker-deploy
 This project build a Docker container from scratch.  
-It pushes the container to Amazon Elastic Container Registry(ECR) and DockerHub.  
+It pushes the image to Amazon Elastic Container Registry(ECR) and Docker Hub.  
 
 ## Reference
 Source code: [noahgift/container-from-scratch-python](https://github.com/noahgift/container-from-scratch-python).  
@@ -9,7 +9,7 @@ Youtube walkthrough: [Setup a Docker python project from scratch in AWS Cloud9](
 
 
 ## How to use
-To build a docker container and push it, you can follow these steps:
+To build a docker image and push it to registry, you can follow these steps:
 
 ### Set up a project
 Launch AWS Cloud9, choose or create an environment.  
@@ -32,22 +32,17 @@ source ~/.dockerproj/bin/activate
 Install the required packages. ```make install```  
 Run this app. ```python app.py --name yy258```  
 
-### Build a container
-We will pull down an official base container, package up our own software and runtime on top of it.  
-Build container accoridng to the setup in Dockerfile, name this container "app".  
+### Build an image and run a container
+We will pull down an official base image, package up our own software and runtime on top of it.  
+Build an image accoridng to the setup in Dockerfile, name it "my-app", tag it "v1".  
 ```
-docker build --tag=app .
+docker build -t my-app:v1 .
 ```
-List all docker images and find the newly created one. 
-```
-docker image ls
-```
-To delete a docker image, use ```docker image rm IMAGE_NAME```  
-If the container is running, use ```docker rmi -f IMAGE_NAME``` to force the deletion.  
+View the newly created image by running ```docker images```.  
 
 **Run docker and shell into it**. The shell will be like ```root@3f63ef850cdd:/app#```  
 ```
-docker run -it app bash 
+docker run -it my-app:v1 bash 
 ```
 Then we can test this app inside docker. To exit docker, run "exit".  
 ```
@@ -55,7 +50,27 @@ python app.py --name yyyy
 exit
 ```
 
-### Push this docker image to Amazon ECR
+### Push to Docker Hub
+Create a new repository "dockerproj" on DockerHub.  
+Login to DockerHub in your AWS local.  
+```
+docker login
+```
+Tag your image with hostname and self defined ```tag-name```.  
+```
+docker tag my-app:v1 yueyang0115/dockerproj:[tag-name]
+```
+Push it to Docker Hub.
+```
+docker push yueyang0115/dockerproj:[tag-name]
+```
+
+### Pull from Docker Hub
+```
+docker pull yueyang0115/[repo-name]:[tag-name]
+```
+
+### Push to Amazon ECR
 Open Amazon ECR console.  
 Create a repository, call it "dockerproj" and enable "Scan on push".  
 Click on the newly created repo, and click on **"view push commands"**. It will show commands like below:  
@@ -90,17 +105,5 @@ docker pull 075300343026.dkr.ecr.us-east-2.amazonaws.com/dockerproj
 ```
 docker run -it 075300343026.dkr.ecr.us-east-2.amazonaws.com/dockerproj python app.py --name yy
 ```
-
-### Push this docker image to DockerHub
-Create a new repository on DockerHub.  
-Login to DockerHub in your AWS local.  
-```
-docker login --username=yourhubusername
-```
-Check your image using ```docker image ls```.  
-Tag your image.  
-
-
-### Pull frrom DockerHub
 
 ### Done!  
