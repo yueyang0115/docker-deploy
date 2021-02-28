@@ -1,6 +1,6 @@
 # docker-deploy
 This project build a Docker container from scratch.  
-It pushes the image to Amazon Elastic Container Registry(ECR) and Docker Hub. And deployes it to Amazon Elastic Container Container Service(ECS).  
+It pushes the image to Amazon Elastic Container Registry(ECR) and Docker Hub. And deploys it to Amazon Elastic Container Container Service(ECS).  
 
 ## Reference
 Source code: [noahgift/container-from-scratch-python](https://github.com/noahgift/container-from-scratch-python).  
