@@ -99,9 +99,9 @@ docker run -it 075300343026.dkr.ecr.us-east-2.amazonaws.com/dockerproj python ap
 ```
 
 ### Deploy to Amazon ECS fargate
-Make true you have pushed your image to Amazon ECR.  
+Make sure you have pushed your image to Amazon ECR.  
 Open ECS console and click on "get started".  
-For "Container definition", choose to configure your custom container image. Name your container, copy your image url provided in ECR console, set up memory limit and port mapping. 
+For "Container definition", choose to configure your custom container image. Name your container, copy your image url provided in ECR console, set up memory limit and port mapping.  
 For "Define your service", set up a load balancer for your service.  
 For "Configure your cluster", name your cluster.  
 Review your setting and your container will begin running.  
