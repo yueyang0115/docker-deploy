@@ -1,6 +1,6 @@
 # docker-deploy
 This project build a Docker container from scratch.  
-It pushes the image to Amazon Elastic Container Registry(ECR) and Docker Hub.  
+It pushes the image to Amazon Elastic Container Registry(ECR) and Docker Hub. And deployes it to Amazon Elastic Container Container Service(ECS).  
 
 ## Reference
 Source code: [noahgift/container-from-scratch-python](https://github.com/noahgift/container-from-scratch-python).  
@@ -97,5 +97,14 @@ aws ecr get-login-password --region us-east-2 | docker login --username AWS --pa
 docker pull 075300343026.dkr.ecr.us-east-2.amazonaws.com/dockerproj
 docker run -it 075300343026.dkr.ecr.us-east-2.amazonaws.com/dockerproj python app.py --name yy
 ```
+
+### Deploy to Amazon ECS fargate
+Make true you have pushed your image to Amazon ECR.  
+Open ECS console and click on "get started".  
+For "Container definition", choose to configure your custom container image. Name your container, copy your image url provided in ECR console, set up memory limit and port mapping. 
+For "Define your service", set up a load balancer for your service.  
+For "Configure your cluster", name your cluster.  
+Review your setting and your container will begin running.  
+You can find your task under "Cluster" in ECS console. You can find the public ip in the detailed information of your task. If you deployed a website, you can access it using this public ip.  
 
 ### Done!  
