@@ -74,35 +74,27 @@ docker pull yueyang0115/[repo-name]:[tag-name]
 Open Amazon ECR console.  
 Create a repository, call it "dockerproj" and enable "Scan on push".  
 Click on the newly created repo, and click on **"view push commands"**. It will show commands like below:  
-First authenticate. The command will be like:  
+First authenticate.  
+Then build docker image.  
+Then tag the image.  
+Finally push this image to AWS repository.  
+The command will be like:  
 ```
 aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 075300343026.dkr.ecr.us-east-2.amazonaws.com
-```
-Then build docker image. The command will be like:  
-```
 docker build -t dockerproj .
-```
-Then tag the image. The command will be like:  
-```
 docker tag dockerproj:latest 075300343026.dkr.ecr.us-east-2.amazonaws.com/dockerproj:latest
-```
-Finally push this image to AWS repository. The command will be like:  
-```
 docker push 075300343026.dkr.ecr.us-east-2.amazonaws.com/dockerproj:latest
 ```
 
 ### Pull from Amazon ECR
 Open another Cloud9 environment.  
-Authenticate first by using the same suthentication code from ECR console. It will look like this:  
+Authenticate first by using the same suthentication code from ECR console.  
+Then pull down this image from ECR.   
+**Run docker in this new environment**.  
+It will look like this:  
 ```
 aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 075300343026.dkr.ecr.us-east-2.amazonaws.com
-```
-Then pull down this image from ECR.  
-```
 docker pull 075300343026.dkr.ecr.us-east-2.amazonaws.com/dockerproj
-```
-**Run docker in this new environment**.  
-```
 docker run -it 075300343026.dkr.ecr.us-east-2.amazonaws.com/dockerproj python app.py --name yy
 ```
 
